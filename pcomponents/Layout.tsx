@@ -4,13 +4,15 @@ import Head from 'next/head';
 
 type Props = {
   title?: string;
+  style?: React.CSSProperties | undefined
 };
 
 const Layout: React.FunctionComponent<Props> = ({
   children,
+  style={},
   title = 'This is the default title',
 }) => (
-  <div>
+  <div style={{...style}}>
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
