@@ -94,10 +94,13 @@ export default (makeStore: MakeStore, _config?: Config) => {
             protected store: Store;
 
             public render() {
+                console.log('------', this.props)
                 const {initialProps, initialState, pageProps, ...props} = this.props;
 
                 // Cmp render must return something like <Provider><Component/></Provider>
-                return <App {...props} {...initialProps} pageProps={pageProps} store={this.store} />;
+                return pageProps ? <App {...props} {...initialProps} pageProps={pageProps} store={this.store} />
+                    :
+                <App {...props} {...initialProps} store={this.store} />;
             }
         };
 };
@@ -133,7 +136,7 @@ export interface InitStoreOptions {
 }
 
 export interface WrappedAppProps {
-    pageProps: any, // stuff returned from getServerSideProps
+    pageProps?: any, // stuff returned from getServerSideProps
     initialProps: any; // stuff returned from getInitialProps
     initialState: any; // stuff in the Store state after getInitialProps
     isServer: boolean;

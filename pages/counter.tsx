@@ -9,7 +9,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { NextPageWithRedux } from '../stores/with-redux-store';
 import { reducerManager } from '../stores/store';
-import Layout from '../pcomponents/Layout';
+import Layout from 'pcomponents/Layout';
 import Clock from '../pcomponents/clock';
 import Counter from '../pcomponents/counter';
 import { StoreNamespace } from '../stores/const';
