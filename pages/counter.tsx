@@ -23,7 +23,11 @@ reducerManager.add(StoreNamespace.counter, countReducer);
 const Page: NextPageWithRedux<CounterPageProps> = () => {
   const namespaceKey = StoreNamespace.counter;
   const counter = useSelector<{ [namespaceKey]: CountState }, CountState>(
-    state => state[namespaceKey]
+    state => state[namespaceKey],
+    (l,r)=> {
+      console.log(l,r);
+      return false
+    }
   );
   const dispatch = useDispatch();
   const { lastUpdate, light } = counter;

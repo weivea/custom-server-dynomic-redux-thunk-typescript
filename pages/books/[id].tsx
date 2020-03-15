@@ -1,6 +1,8 @@
 import React from 'react';
 import { getBookById } from '../../stores/book/booksActions';
 import { useSelector } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
 import { NextPageWithRedux} from '../../stores/with-redux-store'
 import { BookState } from '../../stores/book/bookReducer';
 import Layout from '../../pcomponents/Layout';
@@ -40,13 +42,13 @@ const BookDetailPage: NextPageWithRedux<BookDetailPageProps> = (props) => {
 BookDetailPage.getInitialProps = async ({ query, isServer, store}) => {
   const { id } = query;
 
-  if (isServer) {
-    // wait action to finish if server
-    await (store.dispatch as any)(getBookById(Number(id)));
-  } else {
-    // no need to wait when client side
-    await (store.dispatch as any)(getBookById(Number(id)));
-  }
+  console.log(isServer);
+  
+  
+  await bindActionCreators(getBookById, store.dispatch)(Number(id));
+
+  // await (store.dispatch as any)(getBookById(Number(id)));
+  //对于ThunkAction 目前只知道有这两种方法，反正不是太友好 
 
   return { id: Number(id) };
 };
