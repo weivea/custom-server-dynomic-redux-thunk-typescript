@@ -37,8 +37,9 @@ module.exports = withPlugins([withLess,withCss,withImages,withIFonts,withTM],{
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     // Note: we provide webpack above so you should not `require` it
     // Perform customizations to webpack config
-
-    config.resolve.alias['@/'] = path.resolve(process.cwd(), './')
+    config.resolve.alias['stores'] = path.resolve(__dirname, 'stores');
+    config.resolve.alias['pcomponents'] = path.resolve(__dirname, 'pcomponents');
+    // console.log(config.resolve)
   
     // Important: return the modified config
     return config

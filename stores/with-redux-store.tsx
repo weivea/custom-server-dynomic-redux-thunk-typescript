@@ -94,7 +94,7 @@ export default (makeStore: MakeStore, _config?: Config) => {
             protected store: Store;
 
             public render() {
-                console.log('------', this.props)
+           
                 const {initialProps, initialState, pageProps, ...props} = this.props;
 
                 // Cmp render must return something like <Provider><Component/></Provider>

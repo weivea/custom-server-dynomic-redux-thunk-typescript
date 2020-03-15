@@ -1,30 +1,31 @@
 import { Book } from './interfaces';
 import { Action, Dispatch, ActionCreator } from 'redux';
 import { ThunkAction } from 'redux-thunk';
+import {ActionTypes} from 'stores/const'
 import { fetchSampleData } from './fetch-sampledata';
 
-export const RESET_BOOKS = 'RESET_BOOKS';
-export const FETCH_BOOKS = 'FETCH_BOOKS';
-export const FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS';
-export const FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE';
+// export const RESET_BOOKS = 'RESET_BOOKS';
+// export const FETCH_BOOKS = 'FETCH_BOOKS';
+// export const FETCH_BOOKS_SUCCESS = 'FETCH_BOOKS_SUCCESS';
+// export const FETCH_BOOKS_FAILURE = 'FETCH_BOOKS_FAILURE';
 
-export interface ResetBooksAction extends Action<typeof RESET_BOOKS> {
-  type: typeof RESET_BOOKS;
+export interface ResetBooksAction extends Action<typeof ActionTypes.RESET_BOOKS> {
+  type: typeof ActionTypes.RESET_BOOKS;
 }
 
-export interface FetchBookAction extends Action<typeof FETCH_BOOKS> {
-  type: typeof FETCH_BOOKS;
+export interface FetchBookAction extends Action<typeof ActionTypes.FETCH_BOOKS> {
+  type: typeof ActionTypes.FETCH_BOOKS;
 }
 
 export interface FetchBookSuccessAction
-  extends Action<typeof FETCH_BOOKS_SUCCESS> {
-  type: typeof FETCH_BOOKS_SUCCESS;
+  extends Action<typeof ActionTypes.FETCH_BOOKS_SUCCESS> {
+  type: typeof ActionTypes.FETCH_BOOKS_SUCCESS;
   payload: Book;
 }
 
 export interface FetchBookFailureAction
-  extends Action<typeof FETCH_BOOKS_FAILURE> {
-  type: typeof FETCH_BOOKS_FAILURE;
+  extends Action<typeof ActionTypes.FETCH_BOOKS_FAILURE> {
+  type: typeof ActionTypes.FETCH_BOOKS_FAILURE;
   payload: any;
 }
 
@@ -44,15 +45,15 @@ export type BookThunkAction = ThunkAction<
 export const getBookById: ActionCreator<BookThunkAction> = (id: Number) => {
   return async (dispatch: Dispatch) => {
     let action: GetBookByIdActions;
-    action = { type: FETCH_BOOKS };
+    action = { type: ActionTypes.FETCH_BOOKS };
     dispatch(action);
     try {
       const data: Book = await fetchSampleData(id);
-      action = { type: FETCH_BOOKS_SUCCESS, payload: data };
+      action = { type: ActionTypes.FETCH_BOOKS_SUCCESS, payload: data };
       return dispatch(action);
     } catch (e) {
       if (e instanceof Error) {
-        action = { type: FETCH_BOOKS_FAILURE, payload: [e.message] };
+        action = { type: ActionTypes.FETCH_BOOKS_FAILURE, payload: [e.message] };
       }
     }
     return dispatch(action);

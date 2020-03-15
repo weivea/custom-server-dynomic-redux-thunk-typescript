@@ -1,6 +1,6 @@
 
 import {Dispatch, Action} from 'redux';
-
+import {ActionTypes} from 'stores/const';
 // 接口类型定义
 export interface  CountState {
   lastUpdate: number
@@ -8,12 +8,7 @@ export interface  CountState {
   count: number
 }
 
-export enum ActionTypes  {
-  TICK= 'TICK',
-  INCREMENT= 'INCREMENT',
-  DECREMENT= 'DECREMENT',
-  RESET= 'RESET',
-}
+
 
 export interface PureAction extends Action<string> {
 }
@@ -32,32 +27,25 @@ const defaultCountState:CountState = {
   count: 0,
 }
 
-export const actionTypes = {
-  TICK: 'TICK',
-  INCREMENT: 'INCREMENT',
-  DECREMENT: 'DECREMENT',
-  RESET: 'RESET',
-}
-
 // REDUCERS
 export const countReducer = (state = Object.assign({},defaultCountState), action:CounterAction) => {
   // console.log(state);
   switch (action.type) {
-    case actionTypes.TICK:
+    case ActionTypes.TICK:
       const tickAction = action as TickAction;
       return Object.assign({}, state, {
         lastUpdate: tickAction.ts,
         light: !!tickAction.light,
       })
-    case actionTypes.INCREMENT:
+    case ActionTypes.INCREMENT:
       return Object.assign({}, state, {
         count: state.count + 1,
       })
-    case actionTypes.DECREMENT:
+    case ActionTypes.DECREMENT:
       return Object.assign({}, state, {
         count: state.count - 1,
       })
-    case actionTypes.RESET:
+    case ActionTypes.RESET:
       return Object.assign({}, state, {
         count: defaultCountState.count,
       })
@@ -68,23 +56,23 @@ export const countReducer = (state = Object.assign({},defaultCountState), action
 
 // ACTIONS
 export const serverRenderClock = (isServer:boolean) => (dispatch:Dispatch) => {
-  return dispatch({ type: actionTypes.TICK, light: !isServer, ts: Date.now() })
+  return dispatch({ type: ActionTypes.TICK, light: !isServer, ts: Date.now() })
 }
 
 export const startClock = (dispatch:Dispatch) => {
   return setInterval(() => {
-    dispatch({ type: actionTypes.TICK, light: true, ts: Date.now() })
+    dispatch({ type: ActionTypes.TICK, light: true, ts: Date.now() })
   }, 1000)
 }
 
 export const incrementCount = () => {
-  return { type: actionTypes.INCREMENT }
+  return { type: ActionTypes.INCREMENT }
 }
 
 export const decrementCount = () => {
-  return { type: actionTypes.DECREMENT }
+  return { type: ActionTypes.DECREMENT }
 }
 
 export const resetCount = () => {
-  return { type: actionTypes.RESET }
+  return { type: ActionTypes.RESET }
 }

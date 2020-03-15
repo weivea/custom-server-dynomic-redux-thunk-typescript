@@ -1,10 +1,9 @@
 import {
   GetBookByIdActions,
-  FETCH_BOOKS,
-  FETCH_BOOKS_SUCCESS,
-  FETCH_BOOKS_FAILURE,
-  RESET_BOOKS,
 } from './booksActions';
+// @ts-ignore
+import { ActionTypes } from 'stores/const'
+
 import { Book } from './interfaces';
 import { Reducer } from 'redux';
 
@@ -25,13 +24,13 @@ export const bookReducer: Reducer<BookState, GetBookByIdActions> = (
   action
 ) => {
   switch (action.type) {
-    case FETCH_BOOKS:
+    case ActionTypes.FETCH_BOOKS:
       return { ...state, isLoading: true };
-    case FETCH_BOOKS_SUCCESS:
+    case ActionTypes.FETCH_BOOKS_SUCCESS:
       return { ...state, isLoading: false, payload: action.payload };
-    case FETCH_BOOKS_FAILURE:
+    case ActionTypes.FETCH_BOOKS_FAILURE:
       return { ...state, error: action.payload, isLoading: false };
-    case RESET_BOOKS:
+    case ActionTypes.RESET_BOOKS:
       return initialState;
     default:
       return state;
