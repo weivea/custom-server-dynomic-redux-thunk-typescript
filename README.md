@@ -1,32 +1,28 @@
-# Custom server with TypeScript + Nodemon example
+# custom-server-dynomic-redux-thunk-typescript for next.js
 
-The example shows how you can use [TypeScript](https://typescriptlang.com) on both the server and the client while using [Nodemon](https://nodemon.io/) to live reload the server code without affecting the Next.js universal code.
+基于next.js框架的项目demo  
+next
 
-Server entry point is `server/index.ts` in development and `dist/index.js` in production.
-The second directory should be added to `.gitignore`.
++
 
-## How to use
+redux (redux-thunk) (动态)
 
-### Using `create-next-app`
++
 
-Execute [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+express
 
-```bash
-npm init next-app --example custom-server-typescript custom-server-typescript-app
-# or
-yarn create next-app --example custom-server-typescript custom-server-typescript-app
-```
++
 
-### Download manually
+typscript(可选)
 
-Download the example:
 
-```bash
-curl https://codeload.github.com/zeit/next.js/tar.gz/canary | tar -xz --strip=2 next.js-canary/examples/custom-server-typescript
-cd custom-server-typescript
-```
 
-Install it and run:
+## custom-server
+
+express
+
+
+## Install it and run:
 
 ```bash
 npm install
@@ -34,4 +30,10 @@ npm run dev
 # or
 yarn
 yarn dev
+```
+
+## debug server
+
+```bash
+npm run debug
 ```
